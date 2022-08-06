@@ -1,9 +1,9 @@
 package pl.achrzanowski.moneymanagementexpenseservice.expense;
 
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 import pl.achrzanowski.moneymanagementexpenseservice.category.Category;
 import pl.achrzanowski.moneymanagementexpenseservice.importance.Importance;
-
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -15,11 +15,13 @@ import java.time.LocalDateTime;
 public class Expense {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String title;
     private String description;
     private BigDecimal amount;
     private LocalDate occurrenceDate;
+    @CreationTimestamp
     private LocalDateTime createdDate;
     @OneToOne
     @JoinColumn(name = "importance")

@@ -20,4 +20,11 @@ public class ExpenseService {
         return expenseRepository.findById(Integer.parseInt(id));
     }
 
+    public void save(Expense expense) {
+        expenseRepository.save(expense);
+    }
+
+    public void deleteById(String id){
+        expenseRepository.deleteById(Integer.parseInt(id));
+    }
 }
