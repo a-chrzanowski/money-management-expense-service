@@ -19,7 +19,7 @@ public class ExpenseController {
     @Autowired
     private ExpenseMapper expenseMapper;
 
-    @GetMapping("/all")
+    @GetMapping
     public List<ExpenseDTO> getAll(){
         List<Expense> expenses = expenseService.findAll();
         if(expenses.isEmpty())
@@ -39,7 +39,7 @@ public class ExpenseController {
         }
     }
 
-    @PostMapping("/save")
+    @PostMapping
     public void save(@RequestBody ExpenseDTO expenseDTO){
         try {
             Expense expense = expenseMapper.toExpense(expenseDTO);
@@ -49,7 +49,7 @@ public class ExpenseController {
         }
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable String id){
         try {
             expenseService.deleteById(id);
