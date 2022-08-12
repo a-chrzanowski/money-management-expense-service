@@ -36,7 +36,7 @@ public class CategoryControllerTest {
     }
 
     @Test
-    public void when_getAllAndEmptyService_expect_statusNotFoundAndReason() throws Exception {
+    public void when_getAllAndEmptyService_expect_statusNotFoundAndErrorMessage() throws Exception {
         this.mockMvc
                 .perform(get("/api/category"))
                 .andExpect(status().isNotFound())
