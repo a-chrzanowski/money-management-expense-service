@@ -46,7 +46,7 @@ public class ExpenseController {
     }
 
     @PostMapping
-    public ResponseEntity<String> save(@RequestBody ExpenseDTO expenseDTO){
+    public ResponseEntity<ExpenseDTO> save(@RequestBody ExpenseDTO expenseDTO){
         try {
             Expense expense = expenseMapper.toExpense(expenseDTO);
             Expense savedExpense = expenseService.save(expense);
@@ -55,7 +55,10 @@ public class ExpenseController {
                             .path("/{id}")
                             .buildAndExpand(savedExpense.getId())
                             .toUriString();
-            return ResponseEntity.status(HttpStatus.CREATED).header(HttpHeaders.LOCATION, location).build();
+            return ResponseEntity
+                    .status(HttpStatus.CREATED)
+                    .header(HttpHeaders.LOCATION, location)
+                    .body(expenseMapper.toExpenseDTO(savedExpense));
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error while saving to the database");
         }
