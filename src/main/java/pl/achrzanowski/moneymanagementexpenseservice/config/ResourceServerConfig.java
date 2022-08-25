@@ -12,8 +12,12 @@ public class ResourceServerConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.mvcMatcher("/api/**")
                 .authorizeRequests()
-                .mvcMatchers("/api/**")
-                .access("hasAuthority('SCOPE_expense.read')")
+                .mvcMatchers("/api/expense/**")
+                .access("hasAuthority('SCOPE_expense.all')")
+                .mvcMatchers("/api/importance")
+                .access("hasAuthority('SCOPE_importance.read')")
+                .mvcMatchers("/api/category")
+                .access("hasAuthority('SCOPE_category.read')")
                 .and()
                 .oauth2ResourceServer()
                 .jwt();
