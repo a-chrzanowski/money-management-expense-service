@@ -1,0 +1,18 @@
+spring:
+  h2:
+    console:
+      enabled: false
+  datasource:
+    url: ${H2_URL}
+    username: ${H2_USERNAME}
+    password: ${H2_PASSWORD}
+  jpa:
+    defer-datasource-initialization: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${OAUTH2_ISSUER_URI}
+server:
+  error:
+    include-stacktrace: never
