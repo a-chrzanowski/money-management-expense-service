@@ -33,7 +33,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: mm-expense-service-build
-          path: /home/runner/work/money-management-expense-service/money-management-expense-service/target/mm-expense-service-*.jar
+          path: /home/runner/work/money-management-expense-service/money-management-expense-service/target/money-management-expense-service-*.jar
 
   build-and-push-docker-image:
 
