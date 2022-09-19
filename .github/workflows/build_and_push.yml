@@ -54,11 +54,9 @@ jobs:
           name: mm-expense-service-build
           path: target
       - name: Extract metadata (tags, labels) for Docker
-        id: meta
         uses: docker/metadata-action@v4
         with:
-          images: ${{ env.REGISTRY }}/{{ env.IMAGE_NAME }}
-
+          images: ${{ env.REGISTRY }}/{{ github.repository }}
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
         with:
