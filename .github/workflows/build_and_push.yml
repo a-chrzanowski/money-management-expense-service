@@ -11,7 +11,11 @@ env:
 
 jobs:
   build-jar:
-
+    env:
+      H2_URL: ${{secrets.H2_URL}}
+      H2_USERNAME: ${{secrets.H2_USERNAME}}
+      H2_PASSWORD: ${{secrets.H2_PASSWORD}}
+      OAUTH2_ISSUER_URI: ${{secrets.OAUTH2_ISSUER_URI}}
     runs-on: ubuntu-latest
 
     steps:
