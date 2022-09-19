@@ -3,7 +3,7 @@ name: Money Management Expense Service Docker image build and push
 on:
   pull_request:
     types: [ closed ]
-    branches: [ "refs/heads/development" ]
+    branches: [ "development" ]
 
 jobs:
   build-jar:
@@ -58,6 +58,8 @@ jobs:
         uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=raw,enable=true,priority=1200,value=development
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
         with:
