@@ -3,7 +3,7 @@ name: Money Management Expense Service Docker image build and push
 on:
   pull_request:
     types: [ closed ]
-    branches: [ "development" ]
+    branches: [ "refs/heads/development" ]
 
 jobs:
   build-jar:
