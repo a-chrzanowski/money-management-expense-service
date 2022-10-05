@@ -1,7 +1,8 @@
 spring:
   h2:
     console:
-      enabled: false
+      enabled: ${H2_CONSOLE_ENABLED}
+      settings.web-allow-others: ${H2_WEB_ALLOW_OTHERS}
   datasource:
     url: ${H2_URL}
     username: ${H2_USERNAME}
