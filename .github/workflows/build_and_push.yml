@@ -11,6 +11,8 @@ env:
 jobs:
   build-jar:
     env:
+      H2_CONSOLE_ENABLED: ${{secrets.H2_CONSOLE_ENABLED}}
+      H2_WEB_ALLOW_OTHERS: ${{secrets.H2_WEB_ALLOW_OTHERS}}
       H2_URL: ${{secrets.H2_URL}}
       H2_USERNAME: ${{secrets.H2_USERNAME}}
       H2_PASSWORD: ${{secrets.H2_PASSWORD}}
