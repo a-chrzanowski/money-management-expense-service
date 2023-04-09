@@ -1,6 +1,7 @@
 package pl.achrzanowski.moneymanagementexpenseservice.expense;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,24 +21,26 @@ public class ExpenseServiceTest {
     @Autowired
     private ExpenseService expenseService;
 
+    private final String testOwner = "testOwner";
+
     @Test
     public void when_findAllAndRepositoryIsEmpty_expect_emptyList(){
-        List<Expense> expenseList = expenseService.findAll();
+        List<Expense> expenseList = expenseService.findAllByOwner(testOwner);
         assertTrue(expenseList.isEmpty());
     }
 
     @Test
     public void when_findAllAndRepositoryIsEmpty_expect_notNull(){
-        List<Expense> expenseList = expenseService.findAll();
+        List<Expense> expenseList = expenseService.findAllByOwner(testOwner);
         assertNotNull(expenseList);
     }
 
     @Test
     public void when_findAllAndRepositoryIsNotEmpty_expect_notEmptyList(){
-        Mockito.when(expenseRepository.findAll())
+        Mockito.when(expenseRepository.findAllByOwner(ArgumentMatchers.anyString()))
                 .thenReturn(List.of(new Expense(), new Expense()));
 
-        List<Expense> list = expenseService.findAll();
+        List<Expense> list = expenseService.findAllByOwner(testOwner);
         assertFalse(list.isEmpty());
     }
 

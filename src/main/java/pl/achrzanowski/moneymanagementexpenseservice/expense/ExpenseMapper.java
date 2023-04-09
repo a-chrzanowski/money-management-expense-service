@@ -18,6 +18,7 @@ public interface ExpenseMapper {
 
     @Mapping(source = "category", target = "category.name")
     @Mapping(source = "importance", target = "importance.name")
+    @Mapping(source = "owner", target = "owner")
     Expense toExpense(ExpenseDTO expenseDTO);
 
 }

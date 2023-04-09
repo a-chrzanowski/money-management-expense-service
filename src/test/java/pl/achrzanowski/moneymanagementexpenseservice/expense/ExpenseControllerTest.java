@@ -31,13 +31,15 @@ public class ExpenseControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
 
+    private final String testOwner = "testOwner";
+
     @Test
     public void when_getAllAndNotEmptyService_expect_statusOkAndNotEmptyBody() throws Exception{
         Expense testExpense = new Expense();
         testExpense.setTitle("test");
-        Mockito.when(expenseService.findAll()).thenReturn(List.of(testExpense));
+        Mockito.when(expenseService.findAllByOwner(testOwner)).thenReturn(List.of(testExpense));
         this.mockMvc
-                .perform(get("/api/expense"))
+                .perform(get("/api/expense?owner=" + testOwner))
                 .andExpect(status().isOk())
                 .andExpect(content().json("[{\"title\":\"" + testExpense.getTitle() + "\"}]"));
     }
@@ -45,7 +47,7 @@ public class ExpenseControllerTest {
     @Test
     public void when_getAllAndEmptyService_expect_statusNotFoundAndErrorMessage() throws Exception {
         this.mockMvc
-                .perform(get("/api/expense"))
+                .perform(get("/api/expense?owner=" + testOwner))
                 .andExpect(status().isNotFound())
                 .andExpect(result -> assertEquals("No expenses found", result.getResponse().getErrorMessage()));
     }
