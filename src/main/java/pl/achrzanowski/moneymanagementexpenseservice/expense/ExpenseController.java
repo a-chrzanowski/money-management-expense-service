@@ -26,8 +26,8 @@ public class ExpenseController {
     private ExpenseMapper expenseMapper;
 
     @GetMapping
-    public List<ExpenseDTO> getAll(){
-        List<Expense> expenses = expenseService.findAll();
+    public List<ExpenseDTO> getAll(@RequestParam String owner){
+        List<Expense> expenses = expenseService.findAllByOwner(owner);
         if(expenses.isEmpty())
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No expenses found");
         return expenseMapper.expensesToExpensesDTO(expenses);
@@ -64,8 +64,8 @@ public class ExpenseController {
         }
     }
 
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable String id){
+    @DeleteMapping
+    public void delete(@RequestParam String id){
         try {
             expenseService.deleteById(id);
         } catch (NumberFormatException exception) {

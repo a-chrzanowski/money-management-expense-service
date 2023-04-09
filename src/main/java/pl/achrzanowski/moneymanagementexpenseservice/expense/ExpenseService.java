@@ -12,8 +12,8 @@ public class ExpenseService {
     @Autowired
     private ExpenseRepository expenseRepository;
 
-    public List<Expense> findAll(){
-        return expenseRepository.findAll();
+    public List<Expense> findAllByOwner(String owner){
+        return expenseRepository.findAllByOwner(owner);
     }
 
     public Optional<Expense> findById(String id){

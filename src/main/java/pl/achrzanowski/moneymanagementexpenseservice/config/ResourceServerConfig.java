@@ -12,7 +12,7 @@ public class ResourceServerConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.mvcMatcher("/api/**")
                 .authorizeRequests()
-                .mvcMatchers("/api/expense/**")
+                .mvcMatchers("/api/expense**")
                 .access("hasAuthority('SCOPE_expense.all')")
                 .mvcMatchers("/api/importance")
                 .access("hasAuthority('SCOPE_importance.read')")

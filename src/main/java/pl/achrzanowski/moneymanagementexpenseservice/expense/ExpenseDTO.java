@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 public class ExpenseDTO {
 
     private Integer id;
+    private String owner;
     private String title;
     private String description;
     private String amount;
